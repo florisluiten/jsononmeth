@@ -3,13 +3,13 @@ if (typeof jsonmeth === "undefined") {
 }
 /**
  * Calculates the maximum width/height that fits cosy in the mask area
- * This means that either the width or the height is clipped if you show
- * it as an image.
+ * This means that the target is clipped either horizontally or vertically
+ * when drawn on screen
  *
- * @param {array} mask   The X,Y of the mask
- * @param {array} target The X,Y of the target
+ * @param {array} mask   The width, height of the mask
+ * @param {array} target The width, height of the target
  *
- * @return {array} 
+ * @return {array} The calculated width, height of the target
  *
  * @author Floris Luiten <jsonmeth@florisluiten.nl>
  * @package jsOnMeth
