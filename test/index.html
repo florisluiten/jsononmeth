@@ -2,8 +2,13 @@
 <html><head><title>jsOnMeth - Tests</title>
 <script src="../source/compareArray.js"></script>
 <script src="../source/unitTest.js"></script>
-<!-- Test for maximumAspect -->
+<!-- 
+	Include all sources. Please don't move these in between the tests,
+	since that will affect the timer of unitTest
+-->
 <script src="../source/maximumAspect.js"></script>
+<script src="../source/centerPosition.js"></script>
+<!-- Test for maximumAspect -->
 <script>
 jsonmeth.unitTest(
 	'maximumAspect',
@@ -24,7 +29,6 @@ jsonmeth.unitTest(
 );
 </script>
 <!-- Test for centerPosition -->
-<script src="../source/centerPosition.js"></script>
 <script>
 jsonmeth.unitTest(
 	'centerPosition',
@@ -43,7 +47,6 @@ jsonmeth.unitTest(
 		]
 	}
 );
-
 </script>
 </head>
 <body>
@@ -51,7 +54,10 @@ jsonmeth.unitTest(
 <script>
 document.getElementsByTagName('body')[0].innerHTML = '<p>Finished testing</p>'
 	+ '<p>Tests passed: ' + jsonmeth.global.unitTest.pass.count + '</p>'
-	+ '<p>Tests failed: ' + jsonmeth.global.unitTest.fail.count + '</p>';
+	+ '<p>Tests failed: ' + jsonmeth.global.unitTest.fail.count + '</p>'
+	+ '<p>Test domains: ' + jsonmeth.global.unitTest.domain.count + '</p>'
+	+ '<p>Time taken: ' + jsonmeth.global.unitTest.time.end + ' Ms</p>'
+	;
 ;
 </script>
 </body>

@@ -18,8 +18,14 @@ jsonmeth.global.unitTest = {
     fail: {
         count: 0,
         tests: []
+    },
+    domain: {
+        count: 0
+    },
+    time: {
+        start: null,
+        end: null
     }
-
 };
 /**
  * Allows unit tests to be executed. By providing a domain and some tests,
@@ -40,8 +46,11 @@ jsonmeth.unitTest = function (domain, tests) {
 
     var test, passed = false;
 
-    for (test in tests) {
+    if (jsonmeth.global.unitTest.time.start === null) {
+        jsonmeth.global.unitTest.time.start = new Date().getTime();
+    }
 
+    for (test in tests) {
         if (tests[test][0] instanceof Array && tests[test][0] instanceof Array) {
             passed = jsonmeth.compareArray(tests[test][0], tests[test][1]);
         } else if (tests[test][0] === tests[test][1]) {
@@ -57,6 +66,9 @@ jsonmeth.unitTest = function (domain, tests) {
             jsonmeth.global.unitTest.fail.tests.push(domain + '.' + test);
         }
     }
+
+    jsonmeth.global.unitTest.domain.count++;
+    jsonmeth.global.unitTest.time.end = (new Date().getTime() - jsonmeth.global.unitTest.time.start);
 
     return;
 }
