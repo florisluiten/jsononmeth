@@ -49,24 +49,48 @@ jsonmeth.unitTest(
 );
 </script>
 <style type="text/css">
+.unittest, .failed{
+	border: 1px solid #666;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+.unittest td, .failed td {
+	border-right: 1px solid #666;
+	padding-left: 5px;
+	padding-right: 20px;
+}
 .unittest {
 	background-color: #ececec;
+}
+.failed {
+	color: red;
 }
 </style>
 </head>
 <body>
 <p>To run the tests, please enable javascript</p>
 <script>
-document.getElementsByTagName('body')[0].innerHTML = '<p>Finished testing</p>'
+var string = '<p>Finished testing</p>'
+	+ '<h2>Test result</h2>'
 	+ '<table class="unittest">'
 	+ '<tr span="browser"><td>Browser:</td><td>' + navigator.userAgent + '</td></p>'
-	+ '<tr span="pass"><td>Tests passed:</td><td>' + jsonmeth.global.unitTest.pass.count + '</td></tr>'
-	+ '<tr span="fail"><td>Tests failed:</td><td>' + jsonmeth.global.unitTest.fail.count + '</td></tr>'
-	+ '<tr span="domains"><td>Test domains:</td><td>' + jsonmeth.global.unitTest.domain.count + '</td></tr>'
+	+ '<tr span="pass"><td>Tests passed:</td><td>' + jsonmeth.global.unitTest.pass.length + '</td></tr>'
+	+ '<tr span="fail"><td>Tests failed:</td><td>' + jsonmeth.global.unitTest.fail.length + '</td></tr>'
+	+ '<tr span="domains"><td>Test domains:</td><td>' + jsonmeth.global.unitTest.domain.length + '</td></tr>'
 	+ '<tr span="time"><td>Time taken:</td><td>' + jsonmeth.global.unitTest.time.end + ' Ms</td></tr>'
-	+ '</table>'
-	;
-;
+	+ '</table>';
+
+if (jsonmeth.global.unitTest.fail.length > 0) {
+	string += '<h2>Failed tests</h2>'
+		+ '<table class="failed">';
+
+	for (var test in jsonmeth.global.unitTest.fail) {
+		string += '<tr><td>' + jsonmeth.global.unitTest.fail[test][0] + '</td><td>' + jsonmeth.global.unitTest.fail[test][1] + '</td><td>' + jsonmeth.global.unitTest.fail[test][2] + '</td></tr>';
+	}
+	string += '</table>';
+}
+
+document.getElementsByTagName('body')[0].innerHTML = string;
 </script>
 </body>
 </html>

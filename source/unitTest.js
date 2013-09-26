@@ -11,17 +11,9 @@ if (typeof jsonmeth.global === "undefined") {
  * @package jsOnMeth
  */
 jsonmeth.global.unitTest = {
-    pass: {
-        count: 0,
-        tests: []
-    },
-    fail: {
-        count: 0,
-        tests: []
-    },
-    domain: {
-        count: 0
-    },
+    pass: [],
+    fail: [],
+    domain: [],
     time: {
         start: null,
         end: null
@@ -58,16 +50,14 @@ jsonmeth.unitTest = function (domain, tests) {
         }
 
         if (passed) {
-            jsonmeth.global.unitTest.pass.count++;
-            jsonmeth.global.unitTest.pass.tests.push(domain + '.' + test);
+            jsonmeth.global.unitTest.pass.push([domain + '.' + test, tests[test][0], tests[test][1]]);
         } else {
             console.log('Failed ' + domain + '.' + test + '. Expected ', tests[test][0], ' but got ', tests[test][1]);
-            jsonmeth.global.unitTest.fail.count++;
-            jsonmeth.global.unitTest.fail.tests.push(domain + '.' + test);
+            jsonmeth.global.unitTest.fail.push([domain + '.' + test, tests[test][0], tests[test][1]]);
         }
     }
 
-    jsonmeth.global.unitTest.domain.count++;
+    jsonmeth.global.unitTest.domain.push(domain);
     jsonmeth.global.unitTest.time.end = (new Date().getTime() - jsonmeth.global.unitTest.time.start);
 
     return;
