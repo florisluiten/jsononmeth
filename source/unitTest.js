@@ -25,11 +25,13 @@ jsonmeth.global.unitTest = {
  * Allows unit tests to be executed. By providing a domain and some tests,
  * we will try to execute them and store (plus show) the results of that.
  *
- * @param {string} domain The domain (basename of the script, no extension)
- * @param {dict}   test   Any number of tests, the key is considered the 
- *                        name of the test. The function should yield
- *                        a boolean value which results to true to succeed
- *                        or false to fail the test
+ * @param {string} domain The domain (basename of the script)
+ * @param {dict}   test   Any number of tests. The key is the name of the 
+ *                        test. The value should be a 2-indexed array
+ *                        with two comparable objects (integer, boolean,
+ *                        array). If the values match, the test is
+ *                        considered passed, otherwise it failes. The
+ *                        testing is done strict (===).
  *
  * @return void
  */
@@ -42,7 +44,7 @@ jsonmeth.unitTest = function (domain, tests) {
 
         if (tests[test][0] instanceof Array && tests[test][0] instanceof Array) {
             passed = jsonmeth.compareArray(tests[test][0], tests[test][1]);
-        } else if (tests[test][0] == tests[test][1]) {
+        } else if (tests[test][0] === tests[test][1]) {
             passed = true;
         }
 
