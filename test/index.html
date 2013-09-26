@@ -48,15 +48,23 @@ jsonmeth.unitTest(
 	}
 );
 </script>
+<style type="text/css">
+.unittest {
+	background-color: #ececec;
+}
+</style>
 </head>
 <body>
 <p>To run the tests, please enable javascript</p>
 <script>
 document.getElementsByTagName('body')[0].innerHTML = '<p>Finished testing</p>'
-	+ '<p>Tests passed: ' + jsonmeth.global.unitTest.pass.count + '</p>'
-	+ '<p>Tests failed: ' + jsonmeth.global.unitTest.fail.count + '</p>'
-	+ '<p>Test domains: ' + jsonmeth.global.unitTest.domain.count + '</p>'
-	+ '<p>Time taken: ' + jsonmeth.global.unitTest.time.end + ' Ms</p>'
+	+ '<table class="unittest">'
+	+ '<tr span="browser"><td>Browser:</td><td>' + navigator.userAgent + '</td></p>'
+	+ '<tr span="pass"><td>Tests passed:</td><td>' + jsonmeth.global.unitTest.pass.count + '</td></tr>'
+	+ '<tr span="fail"><td>Tests failed:</td><td>' + jsonmeth.global.unitTest.fail.count + '</td></tr>'
+	+ '<tr span="domains"><td>Test domains:</td><td>' + jsonmeth.global.unitTest.domain.count + '</td></tr>'
+	+ '<tr span="time"><td>Time taken:</td><td>' + jsonmeth.global.unitTest.time.end + ' Ms</td></tr>'
+	+ '</table>'
 	;
 ;
 </script>
