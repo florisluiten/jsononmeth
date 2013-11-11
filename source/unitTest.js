@@ -31,8 +31,8 @@ jsonmeth.global.unitTest = {
  *                        considered passed, otherwise it failes. The
  *                        testing is done strict (===).
  *                        A third item in the array may exists to specify
- *                        additional circumstances. For now, only 'not' is
- *                        an option which inverses the check (true will 
+ *                        additional circumstances. For now, only 'inverse'
+ *                        is an option which inverses the check (true will 
  *                        become false and vica versa)
  *
  * @return void
@@ -55,7 +55,7 @@ jsonmeth.unitTest = function (domain, tests) {
             passed = true;
         }
 
-        if (tests[test][2] === 'not') {
+        if (tests[test][2] === 'inverse') {
             passed = !passed;
         }
 
