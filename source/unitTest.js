@@ -43,6 +43,8 @@ jsonmeth.unitTest = function (domain, tests) {
     }
 
     for (test in tests) {
+        passed = false;
+
         if (tests[test][0] instanceof Array && tests[test][0] instanceof Array) {
             passed = jsonmeth.compareArray(tests[test][0], tests[test][1]);
         } else if (tests[test][0] === tests[test][1]) {
