@@ -99,12 +99,13 @@ jsonmeth.unitTest(
 );
 </script>
 <style type="text/css">
-.unittest, .failed{
+table{
 	border: 1px solid #666;
 	border-collapse: collapse;
 	margin-bottom: 20px;
+	width: 50%;
 }
-.unittest td, .failed td {
+table td {
 	border-right: 1px solid #666;
 	padding-left: 5px;
 	padding-right: 20px;
@@ -140,6 +141,13 @@ if (jsonmeth.global.unitTest.fail.length > 0) {
 	string += '</table>';
 }
 
+string += '<h2>Passed tests</h2>'
+	+ '<table class="passed">';
+
+for (var test in jsonmeth.global.unitTest.pass) {
+	string += '<tr><td>' + jsonmeth.global.unitTest.pass[test][0] + '</td><td>' + jsonmeth.global.unitTest.pass[test][1] + '</td><td>' + jsonmeth.global.unitTest.pass[test][2] + '</td></tr>';
+}
+string += '</table>';
 document.getElementsByTagName('body')[0].innerHTML = string;
 </script>
 </body>
