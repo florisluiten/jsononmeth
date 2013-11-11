@@ -8,6 +8,56 @@
 -->
 <script src="../source/maximumAspect.js"></script>
 <script src="../source/centerPosition.js"></script>
+<!-- Sanity tests for unitTest dependencies -->
+<script>
+jsonmeth.unitTest(
+	'unitTestDependencySanity',
+	{
+		'simple': [
+			jsonmeth.compareArray([1, 2, 3], [1, 2, 3]),
+			true
+		],
+		'mixed': [
+			jsonmeth.compareArray([100, 'a', [1, 2, 3]], [100, 'a', [1, 2, 3]]),
+			true
+		],
+		'mixedOrderFailure': [
+			jsonmeth.compareArray([100, 'a', [1, 2, 3]], [100, 'a', [3, 2, 1]]),
+			false
+		],
+		'typeCheck': [
+			jsonmeth.compareArray([100, '1'], [100, 1]),
+			false
+		],
+		'naiveImplement': [
+			jsonmeth.compareArray([1, 2, 3], [1, "2,3"]),
+			false
+		]
+	}
+);
+</script>
+<!-- Sanity tests for unitTest -->
+<script>
+jsonmeth.unitTest(
+	'unitTestSanity',
+	{
+		'true': [
+			true,
+			true
+		],
+		'false': [
+			false,
+			false
+		],
+		'typeCheck': [
+			"false",
+			false,
+			'not'
+		]
+
+	}
+);
+</script>
 <!-- Test for maximumAspect -->
 <script>
 jsonmeth.unitTest(
