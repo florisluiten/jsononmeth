@@ -30,6 +30,10 @@ jsonmeth.global.unitTest = {
  *                        array). If the values match, the test is
  *                        considered passed, otherwise it failes. The
  *                        testing is done strict (===).
+ *                        A third item in the array may exists to specify
+ *                        additional circumstances. For now, only 'not' is
+ *                        an option which inverses the check (true will 
+ *                        become false and vica versa)
  *
  * @return void
  */
@@ -49,6 +53,10 @@ jsonmeth.unitTest = function (domain, tests) {
             passed = jsonmeth.compareArray(tests[test][0], tests[test][1]);
         } else if (tests[test][0] === tests[test][1]) {
             passed = true;
+        }
+
+        if (tests[test][2] === 'not') {
+            passed = !passed;
         }
 
         if (passed) {
